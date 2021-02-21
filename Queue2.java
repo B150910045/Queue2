@@ -1,3 +1,4 @@
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 class Queue2<T>
@@ -72,7 +73,7 @@ class Queue2<T>
     }
     public static void main(String[] args){
         Queue2<Object> que = new Queue2<>();
-        Scanner scn = new Scanner(System.in);
+        Scanner scn;
         Boolean bool = true;
 
         while(bool){
@@ -83,33 +84,36 @@ class Queue2<T>
             System.out.println("5 - print");
             System.out.println("6 - exit");
 
-            int input = scn.nextInt();
+            try{
+                scn = new Scanner(System.in);
+                int input = scn.nextInt();
 
-            switch(input){
-                case 1: 
-                    Object item;
-                    System.out.println("insert item :");
-                    item = scn.next();
-                    que.insert(item);
-                    break;
-                case 2:
-                    que.remove();
-                    break;
-                case 3:
-                    System.out.println(que.getFront());
-                    break;
-                case 4:
-                    System.out.println(que.getRear());
-                    break;
-                case 5:
-                    que.print();
-                    break;
-                case 6:
-                    bool = false;
-                    break;
-                default :
-                    System.out.println("Zuvhun 1-6 toonuud!");
-            }
+                switch(input){
+                    case 1: 
+                        Object item;
+                        System.out.println("insert item :");
+                        item = scn.next();
+                        que.insert(item);
+                        break;
+                    case 2:
+                        que.remove();
+                        break;
+                    case 3:
+                        System.out.println(que.getFront());
+                        break;
+                    case 4:
+                        System.out.println(que.getRear());
+                        break;
+                    case 5:
+                        que.print();
+                        break;
+                    case 6:
+                        bool = false;
+                        break;
+                    default :
+                        System.out.println("Zuvhun 1-6 toonuud!");
+                }
+            }catch(InputMismatchException e){System.out.println("zuvhun 1-6 toonuud");}
         }
     }
 }
